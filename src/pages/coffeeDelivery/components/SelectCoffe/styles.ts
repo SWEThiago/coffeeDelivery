@@ -3,15 +3,15 @@ import { Minus, Plus, Trash } from 'phosphor-react'
 
 export const MinusFill = styled(Minus)`
   color: ${(props) => props.theme.purple};
-  font-size: 12px;
+  font-size: 10px;
 `
 export const PlusFill = styled(Plus)`
   color: ${(props) => props.theme.purple};
-  font-size: 12px;
+  font-size: 10px;
 `
 export const TrashFill = styled(Trash)`
   color: ${(props) => props.theme.purple};
-  font-size: 12px;
+  font-size: 10px;
 `
 export const ButtonBuyCoffee = styled.button`
   border: 0;
@@ -23,7 +23,7 @@ export const ButtonRemoverCoffee = styled.button`
   justify-items: center;
   gap: 4px;
 
-  border: solid 8.5px ${(props) => props.theme['base-button']};
+  border: solid 6px ${(props) => props.theme['base-button']};
   background: ${(props) => props.theme['base-button']};
   border-radius: 6px;
   margin-left: 16px;
@@ -31,7 +31,7 @@ export const ButtonRemoverCoffee = styled.button`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 8px;
   line-height: 160%;
   color: ${(props) => props.theme['base-text']};
 `
@@ -45,6 +45,7 @@ export const PriceCoffee = styled.div`
   display: flex;
   align-items: center;
   margin-top: 1rem;
+  margin-left: 0.8rem;
 
   div {
     background: ${(props) => props.theme['base-button']};
@@ -57,9 +58,9 @@ export const PriceCoffee = styled.div`
 
   input {
     background: transparent;
-    height: 1.9rem;
+    height: 1.3rem;
     border: solid 1px ${(props) => props.theme['base-button']};
-    font-size: 0.875rem;
+    font-size: 10px;
     width: 1.1rem;
     padding: 4px;
   }
@@ -85,9 +86,8 @@ export const MenuCoffees = styled.div`
   flex-direction: column;
   align-items: stretch;
   gap: 1.5rem;
-  /* width: 30rem; */
-  /* height: 23rem; */
-  padding: 2.5rem;
+
+  padding: 1.5rem;
 
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px 36px;
@@ -96,24 +96,30 @@ export const SelectCoffees = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 1.5rem;
+  gap: 0.5rem;
 
-  span {
-    flex: 1;
-    text-align: right;
+  div {
+    h1 {
+      font-family: 'Baloo 2';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 130%;
+      text-align: center;
+    }
   }
 
-  h1 {
-    font-family: 'Baloo 2';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 130%;
+  span {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    text-align: right;
+    gap: 4px;
   }
 
   img {
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
   }
 `
 export const Division2 = styled.div`
@@ -123,7 +129,7 @@ export const Division2 = styled.div`
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 130%;
 
     color: ${(props) => props.theme['base-text']};
@@ -133,7 +139,7 @@ export const Division2 = styled.div`
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 14px;
     line-height: 130%;
     color: ${(props) => props.theme['base-subtitle']};
   }
@@ -146,6 +152,6 @@ export const ButtonBuy = styled.button`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 160%;
 `

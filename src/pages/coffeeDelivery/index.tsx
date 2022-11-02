@@ -5,10 +5,22 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import {
   BankFill,
   Container,
+  ContainerForm,
   CreditCardFill,
   CurrencyDollarFill,
+  Title,
   MapPinFill,
   MoneyFill,
+  Footer,
+  FooterContainer,
+  InputRua,
+  InputNumero,
+  InputCep,
+  InputComplemento,
+  Inputbairro,
+  InputCidade,
+  InputUF,
+  InputContainer,
 } from './styles'
 import { SelectCoffe } from './components/SelectCoffe'
 
@@ -54,68 +66,83 @@ export function CoffeeDelivery() {
     <Container>
       <div>
         <h1>Complete seu pedido</h1>
-        <form onSubmit={handleSubmit(handleCreateNewCoffee)} action="">
-          <div>
+        <ContainerForm onSubmit={handleSubmit(handleCreateNewCoffee)} action="">
+          <Title>
             <MapPinFill />
-            <div>
-              <span>Endereço de Entrega</span>
+            <section>
+              <h2>Endereço de Entrega</h2>
               <span>Informe o endereço onde deseja receber seu pedido</span>
-            </div>
-          </div>
+            </section>
+          </Title>
 
-          <input id="cep" list="cep-suggestions" placeholder="CEP" />
+          <InputCep id="cep" list="cep-suggestions" placeholder="CEP" />
           <datalist id="cep-suggestions"></datalist>
 
-          <input id="rua" list="rua-suggestions" placeholder="Rua" />
+          <InputRua id="rua" list="rua-suggestions" placeholder="Rua" />
           <datalist id="rua-suggestions"></datalist>
 
-          <input id="numero" list="numero-suggestions" placeholder="Número" />
-          <datalist id="numero-suggestions"></datalist>
+          <InputContainer>
+            <InputNumero
+              id="numero"
+              list="numero-suggestions"
+              placeholder="Número"
+            />
+            <datalist id="numero-suggestions"></datalist>
 
-          <input
-            id="complemento"
-            list="complemento-suggestions"
-            placeholder="Complemento             opcional"
-          />
-          <datalist id="complemento-suggestions"></datalist>
+            <InputComplemento
+              id="complemento"
+              list="complemento-suggestions"
+              placeholder="Complemento                                 opcional"
+            />
+            <datalist id="complemento-suggestions"></datalist>
+          </InputContainer>
 
-          <input id="bairro" list="bairro-suggestions" placeholder="Bairro" />
-          <datalist id="bairro-suggestions"></datalist>
+          <InputContainer>
+            <Inputbairro
+              id="bairro"
+              list="bairro-suggestions"
+              placeholder="Bairro"
+            />
+            <datalist id="bairro-suggestions"></datalist>
 
-          <input id="cidade" list="cidade-suggestions" placeholder="Cidade" />
-          <datalist id="cidade-suggestions"></datalist>
+            <InputCidade
+              id="cidade"
+              list="cidade-suggestions"
+              placeholder="Cidade"
+            />
+            <datalist id="cidade-suggestions"></datalist>
 
-          <input id="uf" list="uf-suggestions" placeholder="UF" />
-          <datalist id="uf-suggestions"></datalist>
+            <InputUF id="uf" list="uf-suggestions" placeholder="UF" />
+            <datalist id="uf-suggestions"></datalist>
+          </InputContainer>
+        </ContainerForm>
 
-          <div>
-            <div>
-              <CurrencyDollarFill />
-              <div>
-                <span>Pagamento</span>
-                <span>
-                  O pagamento é feito na entrega. Escolha a forma que deseja
-                  pagar
-                </span>
-              </div>
-            </div>
+        <FooterContainer>
+          <Title>
+            <CurrencyDollarFill />
+            <section>
+              <h2>Pagamento</h2>
+              <span>
+                O pagamento é feito na entrega. Escolha a forma que deseja pagar
+              </span>
+            </section>
+          </Title>
 
-            <div>
-              <button>
-                <CreditCardFill />
-                Cartão de crédito
-              </button>
-              <button>
-                <BankFill />
-                cartão de débito
-              </button>
-              <button>
-                <MoneyFill />
-                dinheiro
-              </button>
-            </div>
-          </div>
-        </form>
+          <Footer>
+            <button>
+              <CreditCardFill />
+              Cartão de crédito
+            </button>
+            <button>
+              <BankFill />
+              cartão de débito
+            </button>
+            <button>
+              <MoneyFill />
+              dinheiro
+            </button>
+          </Footer>
+        </FooterContainer>
       </div>
 
       <SelectCoffe />

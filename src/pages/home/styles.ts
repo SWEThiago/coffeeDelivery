@@ -33,13 +33,15 @@ export const ContainerTitle = styled.div`
     font-family: Roboto;
     font-weight: 400;
     font-size: 1.25rem;
-    line-height: 1.625rem;
+    line-height: 130%;
     color: ${(props) => props.theme['base-subtitle']};
+    margin-bottom: 2rem;
   }
 
   div {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 12px;
 
     div {
       font-family: Roboto;
@@ -84,12 +86,12 @@ export const PackageFill = styled(Package)`
 export const MenuCoffeesTitle = styled.h1`
   font-family: 'Baloo 2';
   font-weight: 800;
-  font-size: 2.5rem;
+  font-size: 2rem;
   line-height: 3.9rem;
-  color: ${(props) => props.theme['base-title']};
+  color: ${(props) => props.theme['base-subtitle']};
 
   max-width: 51.25rem;
-  margin: 2rem auto;
+  margin-top: 4rem;
   display: flex;
   align-items: top;
 `
