@@ -1,3 +1,7 @@
+# Projeto em desenvolvimetno 
+
 ![preview](./public/preview.png)
 
-# Projeto em desenvolvimetno 
+![preview](./public/preview2.png)
+
+![preview](./public/preview3.png)
