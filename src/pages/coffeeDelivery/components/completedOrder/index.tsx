@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import delivery from '../../../../assets/deliveryImg.png'
 import {
   Container,
@@ -8,7 +9,23 @@ import {
   TimerFill,
 } from './styles'
 
+interface CreateNewForm {
+  cep: number
+  numero: number
+  rua: string
+  complemento: string
+  bairro: string
+  cidade: string
+  uf: string
+}
+
 export function CompletedOrder() {
+  const JsonForm = localStorage.getItem(
+    'ThiagoGonçalves: CoffeeDelivery-state-form-1.0.0',
+  )
+
+  const form: CreateNewForm = JSON.parse(JsonForm)
+
   return (
     <Container>
       <div>
@@ -19,8 +36,8 @@ export function CompletedOrder() {
             <div>
               <span>
                 <MapPinFill weight="fill" />
-                Entrega em Rua João Daniel Martinelli, 102 Farrapos - Porto
-                Alegre, RS
+                Entrega em rua {form.rua}, {form.numero} {form.bairro} -{' '}
+                {form.cidade}, {form.uf}
               </span>
             </div>
 

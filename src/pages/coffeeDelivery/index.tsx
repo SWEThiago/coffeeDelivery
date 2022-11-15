@@ -1,6 +1,5 @@
-import * as zod from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { FormValidations } from '../../contexts/index.validations'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 import {
   BankFill,
@@ -23,50 +22,55 @@ import {
   InputContainer,
 } from './styles'
 import { SelectCoffe } from './components/SelectCoffe'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
-const newCoffeeFormValidationSchema = zod.object({
-  cep: zod
-    .number()
-    .min(8, 'Informe um cep válido')
-    .max(8, 'Informe um cep válido'),
-  numero: zod.number().min(1, 'Informe um numero válido'),
-  rua: zod.string(),
-  complemento: zod.string(),
-  bairro: zod.string(),
-  cidade: zod.string(),
-  uf: zod
-    .string()
-    .min(2, 'Informe um UF válido')
-    .max(2, 'Informe um UF válido'),
-})
+interface CreateNewForm {
+  cep: number
+  numero: number
+  rua: string
+  complemento: string
+  bairro: string
+  cidade: string
+  uf: string
+}
 
-type NewCoffeeFormData = zod.infer<typeof newCoffeeFormValidationSchema>
+const initialFormState = {
+  cep: '',
+  numero: '',
+  rua: '',
+  complemento: '',
+  bairro: '',
+  cidade: '',
+  uf: '',
+}
 
 export function CoffeeDelivery() {
-  const newCoffeeForm = useForm<NewCoffeeFormData>({
-    resolver: zodResolver(newCoffeeFormValidationSchema),
-    defaultValues: {
-      cep: 0,
-      numero: 0,
-      rua: '',
-      complemento: '',
-      bairro: '',
-      cidade: '',
-      uf: '',
-    },
+  const [form, setForm] = useState(initialFormState)
+  const { register, handleSubmit } = useForm({
+    defaultValues: initialFormState,
+    resolver: yupResolver(FormValidations),
   })
 
-  const { handleSubmit, reset } = newCoffeeForm
-
-  function handleCreateNewCoffee(data: NewCoffeeFormData) {
-    reset()
+  function setInput(inputName) {
+    return (e) => {
+      const newValue = { [inputName]: e.target.value }
+      return setForm((form) => ({ ...form, ...newValue }))
+    }
   }
+
+  localStorage.setItem(
+    'ThiagoGonçalves: CoffeeDelivery-state-form-1.0.0',
+    JSON.stringify(form),
+  )
 
   return (
     <Container>
       <div>
         <h1>Complete seu pedido</h1>
-        <ContainerForm onSubmit={handleSubmit(handleCreateNewCoffee)} action="">
+
+        <ContainerForm>
           <Title>
             <MapPinFill />
             <section>
@@ -75,10 +79,23 @@ export function CoffeeDelivery() {
             </section>
           </Title>
 
-          <InputCep id="cep" list="cep-suggestions" placeholder="CEP" />
+          <InputCep
+            id="cep"
+            list="cep-suggestions"
+            placeholder="CEP"
+            type="text"
+            {...register('cep')}
+          />
           <datalist id="cep-suggestions"></datalist>
 
-          <InputRua id="rua" list="rua-suggestions" placeholder="Rua" />
+          <InputRua
+            id="rua"
+            list="rua-suggestions"
+            placeholder="Rua"
+            type="text"
+            onChange={setInput('rua')}
+            value={form.rua}
+          />
           <datalist id="rua-suggestions"></datalist>
 
           <InputContainer>
@@ -86,6 +103,9 @@ export function CoffeeDelivery() {
               id="numero"
               list="numero-suggestions"
               placeholder="Número"
+              type="text"
+              onChange={setInput('numero')}
+              value={form.numero}
             />
             <datalist id="numero-suggestions"></datalist>
 
@@ -93,6 +113,9 @@ export function CoffeeDelivery() {
               id="complemento"
               list="complemento-suggestions"
               placeholder="Complemento                                 opcional"
+              type="text"
+              onChange={setInput('complemento')}
+              value={form.complemento}
             />
             <datalist id="complemento-suggestions"></datalist>
           </InputContainer>
@@ -102,6 +125,9 @@ export function CoffeeDelivery() {
               id="bairro"
               list="bairro-suggestions"
               placeholder="Bairro"
+              type="text"
+              onChange={setInput('bairro')}
+              value={form.bairro}
             />
             <datalist id="bairro-suggestions"></datalist>
 
@@ -109,10 +135,20 @@ export function CoffeeDelivery() {
               id="cidade"
               list="cidade-suggestions"
               placeholder="Cidade"
+              type="text"
+              onChange={setInput('cidade')}
+              value={form.cidade}
             />
             <datalist id="cidade-suggestions"></datalist>
 
-            <InputUF id="uf" list="uf-suggestions" placeholder="UF" />
+            <InputUF
+              id="uf"
+              list="uf-suggestions"
+              placeholder="UF"
+              type="text"
+              onChange={setInput('uf')}
+              value={form.uf}
+            />
             <datalist id="uf-suggestions"></datalist>
           </InputContainer>
         </ContainerForm>

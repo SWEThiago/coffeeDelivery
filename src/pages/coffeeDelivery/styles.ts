@@ -237,7 +237,7 @@ export const InputCidade = styled.input`
   font-size: 14px;
   line-height: 130%;
 
-  width: 225px;
+  width: 216px;
   height: 38px;
 `
 export const InputUF = styled.input`
@@ -256,7 +256,7 @@ export const InputUF = styled.input`
   font-size: 14px;
   line-height: 130%;
 
-  width: 40px;
+  width: 48px;
   height: 38px;
 `
 export const InputContainer = styled.div`

@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
+import { CoffeesContext } from '../../../../contexts/CoffeesContext'
+import { formatPrice } from '../../../../util/format'
 import {
   ButtonBuyCoffee,
   Container,
@@ -9,28 +11,17 @@ import {
   ShoppingCartFill,
 } from './styles'
 
-interface CoffeesMenu {
-  id: number
-  label: string
-  name: string
-  description: string
-  price: number
-  available?: boolean
-  image: string
-}
-
 export function Coffees() {
-  const [coffeesList, setCoffeesList] = useState<CoffeesMenu[]>([])
+  const { coffeesList, handleCoffeeIncrement, handleCoffeeDecrement } =
+    useContext(CoffeesContext)
 
-  useEffect(() => {
-    fetch('http://localhost:3000/coffes')
-      .then((response) => response.json())
-      .then((data) => setCoffeesList(data))
-  }, [])
-
+  const coffeeFormatted = coffeesList.map((coffee) => ({
+    ...coffee,
+    priceFormatted: formatPrice(coffee.price),
+  }))
   return (
     <Container>
-      {coffeesList.map((coffee) => {
+      {coffeeFormatted.map((coffee) => {
         return (
           <MenuCoffees key={coffee.id}>
             <img src={coffee.image} alt="" />
@@ -40,20 +31,31 @@ export function Coffees() {
 
             <PriceCoffee>
               <span>
-                R$ <strong>{coffee.price}</strong>
+                <strong>{coffee.priceFormatted}</strong>
               </span>
               <div>
-                <ButtonBuyCoffee type="button">
+                <ButtonBuyCoffee
+                  onClick={() => handleCoffeeDecrement(coffee.id)}
+                  type="button"
+                >
                   <MinusFill weight="bold" />
                 </ButtonBuyCoffee>
-                <input type="number" id="coffeeAmount" placeholder="1" />
-                <ButtonBuyCoffee type="button">
+                <input
+                  readOnly
+                  value={coffee.amount}
+                  type="number"
+                  id="coffeeAmount"
+                />
+                <ButtonBuyCoffee
+                  onClick={() => handleCoffeeIncrement(coffee.id)}
+                  type="button"
+                >
                   <PlusFill weight="bold" />
                 </ButtonBuyCoffee>
               </div>
-              <ButtonBuyCoffee type="button">
+              <a href="/delivery">
                 <ShoppingCartFill weight="fill" />
-              </ButtonBuyCoffee>
+              </a>
             </PriceCoffee>
           </MenuCoffees>
         )

@@ -67,7 +67,8 @@ export const ShoppingCartFill = styled(ShoppingCart)`
   background-color: ${(props) => props.theme['purple-dark']};
   border: solid 4px ${(props) => props.theme['purple-dark']};
   border-radius: 4px;
-  font-size: 21px;
+  font-size: 22px;
+  margin-top: 2px;
 `
 export const MinusFill = styled(Minus)`
   color: ${(props) => props.theme.purple};
@@ -84,12 +85,18 @@ export const PriceCoffee = styled.div`
   gap: 8px;
   margin-top: 1rem;
 
+  div {
+    border: solid 1px ${(props) => props.theme['base-button']};
+    background: ${(props) => props.theme['base-button']};
+    border-radius: 5px;
+  }
+
   input {
     background: ${(props) => props.theme['base-button']};
-    height: 1.3rem;
+    height: 1.5rem;
     border: solid 1px ${(props) => props.theme['base-button']};
     font-size: 0.875rem;
-    width: 1rem;
+    width: 1.2rem;
     padding: 4px;
   }
   input::-webkit-outer-spin-button,
@@ -104,13 +111,12 @@ export const PriceCoffee = styled.div`
       font-family: 'Baloo 2';
       font-style: normal;
       font-weight: 800;
-      font-size: 1.3rem;
+      font-size: 1rem;
       line-height: 130%;
     }
   }
 `
 export const ButtonBuyCoffee = styled.button`
-  border: solid 1px ${(props) => props.theme['base-button']};
-  background: ${(props) => props.theme['base-button']};
-  border-radius: 2px;
+  border: 0;
+  background: transparent;
 `

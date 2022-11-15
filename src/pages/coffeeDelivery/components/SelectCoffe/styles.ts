@@ -21,7 +21,6 @@ export const ButtonRemoverCoffee = styled.button`
   display: flex;
   align-items: center;
   justify-items: center;
-  gap: 4px;
 
   border: solid 6px ${(props) => props.theme['base-button']};
   background: ${(props) => props.theme['base-button']};
@@ -37,7 +36,7 @@ export const ButtonRemoverCoffee = styled.button`
 `
 export const Division = styled.div`
   border-bottom: 1px solid ${(props) => props.theme['base-button']};
-  padding-bottom: 2rem;
+
   display: flex;
   flex-direction: column;
 `
@@ -53,7 +52,6 @@ export const PriceCoffee = styled.div`
     padding: 2px;
     display: flex;
     flex-direction: row;
-    gap: 4px;
   }
 
   input {
@@ -86,6 +84,7 @@ export const MenuCoffees = styled.div`
   flex-direction: column;
   align-items: stretch;
   gap: 1.5rem;
+  width: 308px;
 
   padding: 1.5rem;
 
@@ -97,6 +96,7 @@ export const SelectCoffees = styled.div`
   flex-direction: row;
   align-items: flex-start;
   gap: 0.5rem;
+  margin-bottom: 2rem;
 
   div {
     h1 {
@@ -115,11 +115,15 @@ export const SelectCoffees = styled.div`
     flex: 1;
     text-align: right;
     gap: 4px;
+
+    strong {
+      font-size: 0.875rem;
+    }
   }
 
   img {
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
   }
 `
 export const Division2 = styled.div`
@@ -144,7 +148,10 @@ export const Division2 = styled.div`
     color: ${(props) => props.theme['base-subtitle']};
   }
 `
-export const ButtonBuy = styled.button`
+export const ButtonBuy = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: solid 6px ${(props) => props.theme.yellow};
   border-radius: 6px;
   background: ${(props) => props.theme.yellow};

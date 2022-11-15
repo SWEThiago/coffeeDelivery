@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import {
   CircleFill,
   HeaderContainer,
@@ -8,12 +9,16 @@ import {
 } from './styles'
 
 import logoCoffee from '../../assets/logoCoffee.png'
+import { CoffeesContext } from '../../contexts/CoffeesContext'
 
 export function Header() {
+  const { sumCoffees } = useContext(CoffeesContext)
+
   return (
     <HeaderContainer>
-      <img src={logoCoffee} alt="" />
-
+      <a href="/">
+        <img src={logoCoffee} alt="" />
+      </a>
       <nav>
         <Localization
           target="_blank"
@@ -22,12 +27,14 @@ export function Header() {
           <MapPinFill weight="fill" />
           <p>Patos de Minas, MG</p>
         </Localization>
-        <a href="#">
+        <a href="/delivery">
           <ShoppingCartFill weight="fill" />
-          <ShoppingCartValue>
-            <CircleFill />
-            <p>3</p>
-          </ShoppingCartValue>
+          {sumCoffees > 0 && (
+            <ShoppingCartValue>
+              <CircleFill />
+              {<p>{sumCoffees}</p>}
+            </ShoppingCartValue>
+          )}
         </a>
       </nav>
     </HeaderContainer>
